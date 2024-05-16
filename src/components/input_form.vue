@@ -2,7 +2,7 @@
   <div class="web">
     <div class="form_input_data">
       <form @submit.prevent="addData" method="post" >
-        <h2>Saving statistics of shooting</h2>
+        <h2>Saving shooting statistics</h2>
         <label for="x_value">X</label>
         <input type="number" name="x_value" id="x_value" max="10" min="-10" v-model="formData.x">
         <label for="y_value">Y</label>
@@ -35,7 +35,7 @@
           <td>{{ record.distance }}</td>
         </tr>
       </table>
-      <h2 v-else>Zde se budou zobrazovat uložená data</h2>
+      <h2 v-else>Here will be displayed your data</h2>
     </div>
   </div>
 
@@ -61,7 +61,7 @@ export default {
     };
   },
   mounted() {
-    this.renderChart();
+    this.renderChartChartJS();
   },
   methods: {
     addData() {
@@ -74,18 +74,18 @@ export default {
 
       //this.formData = { x: '', y: '', distance: '' };
 
-      this.renderChart();
+      this.renderChartChartJS();
     },
     deleteData() {
       localStorage.clear();
       location.reload();
     },
-    renderChart() {
+    renderChartChartJS() {
       const formRecords = JSON.parse(localStorage.getItem('formRecords')) || [];
       const ctx = document.getElementById('myChart').getContext('2d');
-      const categories = Array.from(new Set(formRecords.map(record => record.distance))); // Unikátní kategorie
+      const distances = Array.from(new Set(formRecords.map(record => record.distance))); // Unikátní kategorie
 
-      const datasets = categories.map((distance, index) => {
+      const datasets = distances.map((distance, index) => {
         const dataByDistance = formRecords.filter(record => record.distance === distance);
         const color = this.getDistanceColor(index); // Získání barvy pro každou kategorii
         return {
@@ -103,7 +103,7 @@ export default {
       }
 
       this.myChart = new Chart(ctx, {
-        type: 'scatter', // nebo 'bar', 'pie', atd.
+        type: 'scatter',
         data: {
           datasets
         },
