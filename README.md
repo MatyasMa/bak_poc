@@ -13,8 +13,18 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 ## Project Setup
 
 ```sh
+git clone https://github.com/MatyasMa/bak_poc
+
+cd bak_poc
+
 npm install
+
+npm run dev
+
+o
+
 ```
+
 
 ### Compile and Hot-Reload for Development
 
