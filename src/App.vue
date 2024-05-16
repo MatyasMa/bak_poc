@@ -1,5 +1,5 @@
 <script>
-import input_form from './components/input_form.vue'
+import input_form from './components/statistics.vue'
 
 export default {
   name: 'App',
